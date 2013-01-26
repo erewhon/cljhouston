@@ -1,4 +1,5 @@
 (ns cljhouston.views.welcome
+  (:require [cljhouston.fritter :as fritter])
   (:use [hiccup core page element]
         noir.core))
 
@@ -16,7 +17,8 @@
    ["7/26/2012" "Clojure Macros through the Lens of Generative programming"]
    ["8/23/2012" "Watch video from clojure/west"]
    ["9/27/2012" "Pulling data from a database + Coding"]
-   ["10/25/2012" "How to use Enlive"]])
+   ["10/25/2012" "How to use Enlive"]
+   ["01/24/2013" "Immutant, Tooling"]])
 
 (defpage "/"
   []
@@ -52,5 +54,14 @@
       [:div.row
        [:div.span12
         [:h2 "Projects"]
-        [:p [:em "... you're looking at it ..."]]]]]])))
+        [:p [:em "... you're looking at it ..."]]]]
+      [:div.row
+        [:div.span12
+        [:h2 "Fritter"]
+        (fritter/get-messages-list)
+        ]]
+        ]])))
 
+(defpage [:post "/fritter"] {:keys [message]}
+  (fritter/publish message)
+  "Thanks!")
