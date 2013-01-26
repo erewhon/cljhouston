@@ -9,10 +9,3 @@
 (web/start "/" (server/gen-handler {:mode :dev :ns 'cljhouston}))
 
 (fritter/start)
-
-;; Messaging allows for starting (and stopping) destinations (queues & topics)
-;; and listening for messages on a destination.
-
-; (messaging/start "/queue/a-queue")
-; (messaging/listen "/queue/a-queue" #(println "received: " %))
-
